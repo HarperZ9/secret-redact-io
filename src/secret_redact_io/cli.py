@@ -38,7 +38,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="io-guard", description="Guard file, fetch, and exec IO.")
+    parser = argparse.ArgumentParser(prog="secret-redact-io", description="Guard file, fetch, and exec IO.")
     sub = parser.add_subparsers(dest="command", required=True)
     read = sub.add_parser("read")
     read.add_argument("path")

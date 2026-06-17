@@ -3,7 +3,7 @@ from __future__ import annotations
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-from io_guardrails import fetch_guarded
+from secret_redact_io import fetch_guarded
 
 
 class SecretHandler(BaseHTTPRequestHandler):

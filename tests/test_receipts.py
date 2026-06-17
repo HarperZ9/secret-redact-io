@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 
-from io_guardrails import GuardrailReceipt
+from secret_redact_io import GuardrailReceipt
 
 
 def test_receipt_json_is_stable_and_hash_only() -> None:

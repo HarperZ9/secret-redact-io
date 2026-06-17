@@ -18,7 +18,7 @@ def fetch_guarded(
     parsed = urlsplit(url)
     if parsed.scheme not in {"http", "https"}:
         raise ValueError("only http and https URLs are allowed")
-    request = Request(url, headers={"User-Agent": "io-guardrails/0.1"})
+    request = Request(url, headers={"User-Agent": "secret-redact-io/0.1"})
     with urlopen(request, timeout=timeout) as response:
         raw = response.read(max_bytes + 1)
         if len(raw) > max_bytes:

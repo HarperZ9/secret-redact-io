@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from io_guardrails import GuardrailPolicy
+from secret_redact_io import GuardrailPolicy
 
 
 def test_redacts_common_secret_shapes_without_leaking_values() -> None:

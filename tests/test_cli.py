@@ -11,7 +11,7 @@ def test_cli_read_emits_redacted_json(tmp_path) -> None:
     target.write_text(f"OPENAI_API_KEY={secret}", encoding="utf-8")
 
     completed = subprocess.run(
-        [sys.executable, "-m", "io_guardrails", "read", str(target), "--json"],
+        [sys.executable, "-m", "secret_redact_io", "read", str(target), "--json"],
         check=True,
         capture_output=True,
         text=True,
@@ -30,7 +30,7 @@ def test_cli_exec_splits_command_after_separator() -> None:
         [
             sys.executable,
             "-m",
-            "io_guardrails",
+            "secret_redact_io",
             "exec",
             "--json",
             "--",

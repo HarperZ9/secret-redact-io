@@ -1,6 +1,6 @@
-# io-guardrails
+# secret-redact-io
 
-`io-guardrails` is a small Python SDK and CLI for guarded IO. It wraps file
+`secret-redact-io` is a small Python SDK and CLI for guarded IO. It wraps file
 reads, file writes, HTTP fetches, and subprocess execution with redaction and
 hash-only audit receipts.
 
@@ -14,22 +14,22 @@ The default posture is conservative:
 ## Install
 
 ```bash
-python -m pip install io-guardrails
+python -m pip install secret-redact-io
 ```
 
 ## CLI
 
 ```bash
-io-guard read README.md --json
-io-guard write out.txt --content "note=hello" --dry-run --json
-io-guard fetch https://example.com --json
-io-guard exec --json -- python -c "print('hello')"
+secret-redact-io read README.md --json
+secret-redact-io write out.txt --content "note=hello" --dry-run --json
+secret-redact-io fetch https://example.com --json
+secret-redact-io exec --json -- python -c "print('hello')"
 ```
 
 ## Python API
 
 ```python
-from io_guardrails import read_text_guarded, run_guarded
+from secret_redact_io import read_text_guarded, run_guarded
 
 read_result = read_text_guarded("README.md")
 print(read_result.text)
@@ -41,6 +41,5 @@ print(exec_result.stdout)
 
 ## Boundary
 
-This package is a public clean-room guardrail utility. It does not include
-private policies, private corpora, credentials, operational runbooks, or
-environment-specific routing rules.
+This package is a public, self-contained guardrail utility. It does not include
+credentials, secrets, or any deployment-specific configuration.

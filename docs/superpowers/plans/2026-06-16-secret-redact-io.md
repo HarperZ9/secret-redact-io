@@ -13,13 +13,13 @@
 ### Task 1: Redaction Policy
 
 **Files:**
-- Create: `src/io_guardrails/redaction.py`
+- Create: `src/secret_redact_io/redaction.py`
 - Test: `tests/test_redaction.py`
 
 - [ ] **Step 1: Write the failing test**
 
 ```python
-from io_guardrails import GuardrailPolicy
+from secret_redact_io import GuardrailPolicy
 
 
 def test_redacts_common_secret_shapes_without_leaking_values() -> None:
@@ -34,7 +34,7 @@ def test_redacts_common_secret_shapes_without_leaking_values() -> None:
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `python -m pytest tests/test_redaction.py -q`
-Expected: FAIL with `ModuleNotFoundError: No module named 'io_guardrails'`.
+Expected: FAIL with `ModuleNotFoundError: No module named 'secret_redact_io'`.
 
 - [ ] **Step 3: Write minimal implementation**
 
@@ -48,13 +48,13 @@ Expected: PASS.
 ### Task 2: Receipt Schema
 
 **Files:**
-- Create: `src/io_guardrails/receipts.py`
+- Create: `src/secret_redact_io/receipts.py`
 - Test: `tests/test_receipts.py`
 
 - [ ] **Step 1: Write the failing test**
 
 ```python
-from io_guardrails import GuardrailReceipt
+from secret_redact_io import GuardrailReceipt
 
 
 def test_receipt_json_is_stable_and_hash_only() -> None:
@@ -88,7 +88,7 @@ Expected: PASS.
 ### Task 3: File IO
 
 **Files:**
-- Create: `src/io_guardrails/file_io.py`
+- Create: `src/secret_redact_io/file_io.py`
 - Test: `tests/test_file_io.py`
 
 - [ ] **Step 1: Write the failing tests**
@@ -112,8 +112,8 @@ Expected: PASS.
 ### Task 4: Fetch And Exec Wrappers
 
 **Files:**
-- Create: `src/io_guardrails/fetch_io.py`
-- Create: `src/io_guardrails/exec_io.py`
+- Create: `src/secret_redact_io/fetch_io.py`
+- Create: `src/secret_redact_io/exec_io.py`
 - Test: `tests/test_fetch.py`
 - Test: `tests/test_exec.py`
 
@@ -138,8 +138,8 @@ Expected: PASS.
 ### Task 5: CLI, Docs, And Release Gates
 
 **Files:**
-- Create: `src/io_guardrails/cli.py`
-- Create: `src/io_guardrails/__main__.py`
+- Create: `src/secret_redact_io/cli.py`
+- Create: `src/secret_redact_io/__main__.py`
 - Create: `pyproject.toml`
 - Create: `README.md`
 - Create: `LICENSE`
@@ -152,7 +152,7 @@ Expected: PASS.
 
 - [ ] **Step 1: Write failing tests**
 
-Test `python -m io_guardrails read`, `python -m io_guardrails exec`, and the public surface scanner.
+Test `python -m secret_redact_io read`, `python -m secret_redact_io exec`, and the public surface scanner.
 
 - [ ] **Step 2: Run tests to verify they fail**
 
@@ -161,7 +161,7 @@ Expected: FAIL because CLI and scanner are missing.
 
 - [ ] **Step 3: Write minimal implementation**
 
-Expose `io-guard` console script, JSON output, Markdown-friendly README, MIT license, CI workflow, and a scanner that blocks `.env` files, private path fragments, and secret-shaped literals.
+Expose `secret-redact-io` console script, JSON output, Markdown-friendly README, MIT license, CI workflow, and a scanner that blocks `.env` files, private path fragments, and secret-shaped literals.
 
 - [ ] **Step 4: Run full verification**
 
