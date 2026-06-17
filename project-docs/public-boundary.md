@@ -1,6 +1,6 @@
 # Public Boundary
 
-`io-guardrails` publishes generic IO safety mechanics:
+`secret-redact-io` publishes generic IO safety mechanics:
 
 - redaction policy rules for common secret-shaped values;
 - guarded file read and write helpers;
@@ -8,5 +8,5 @@
 - guarded subprocess helper;
 - hash-only receipt records.
 
-The package does not publish private environment rules, private routing state,
-contract or corpus material, credentials, operator memory, or engagement data.
+The package does not publish private environment rules, credentials, or any
+deployment-specific configuration.

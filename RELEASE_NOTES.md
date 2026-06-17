@@ -1,4 +1,4 @@
-# io-guardrails v0.1.0
+# secret-redact-io v0.1.0
 
 Initial public release.
 
@@ -7,4 +7,4 @@ Initial public release.
 - Guarded subprocess helper.
 - Common secret-shape redaction policy.
 - Hash-only receipt schema.
-- CLI entry point: `io-guard`.
+- CLI entry point: `secret-redact-io`.

@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "io-guardrails"
+name = "secret-redact-io"
 version = "0.1.0"
 description = "Guarded file, fetch, and subprocess IO with redaction and hash-only receipts."
 readme = "README.md"
@@ -22,7 +22,7 @@ classifiers = [
 ]
 
 [project.scripts]
-io-guard = "io_guardrails.cli:main"
+secret-redact-io = "secret_redact_io.cli:main"
 
 [project.optional-dependencies]
 dev = ["build>=1.2", "pytest>=8.0"]

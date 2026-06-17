@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from io_guardrails import read_text_guarded, write_text_guarded
+from secret_redact_io import read_text_guarded, write_text_guarded
 
 
 def test_read_text_guarded_returns_redacted_text_and_receipt(tmp_path) -> None:

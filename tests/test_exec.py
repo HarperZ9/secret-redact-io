@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import sys
 
-from io_guardrails import run_guarded
+from secret_redact_io import run_guarded
 
 
 def test_run_guarded_redacts_stdout_and_keeps_receipt_hash_only() -> None:
