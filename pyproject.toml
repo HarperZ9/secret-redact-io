@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "secret-redact-io"
 version = "0.1.0"
-description = "Guarded file, fetch, and subprocess IO with redaction and hash-only receipts."
+description = "Stdlib-only guarded file/fetch/subprocess IO: strips API keys, tokens, and PEM keys; emits hash-only receipts."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
