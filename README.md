@@ -1,4 +1,13 @@
-# secret-redact-io
+# Secret Redact IO
+
+> Stdlib-only guarded file/fetch/subprocess IO: strips API keys, tokens, and PEM keys; emits hash-only receipts.
+
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![python](https://img.shields.io/badge/python-3.11%2B-blue.svg)
+![version](https://img.shields.io/badge/version-0.1.0-informational.svg)
+[![CI](https://github.com/HarperZ9/secret-redact-io/actions/workflows/tests.yml/badge.svg)](https://github.com/HarperZ9/secret-redact-io/actions/workflows/tests.yml)
+![deps: none](https://img.shields.io/badge/deps-none-success.svg)
+[![part of: AI-accountability toolkit](https://img.shields.io/badge/part_of-AI--accountability_toolkit-7a5cff.svg)](https://harperz9.github.io)
 
 `secret-redact-io` is a small Python SDK and CLI for guarded IO. It wraps file
 reads, file writes, HTTP fetches, and subprocess execution with redaction and
@@ -43,3 +52,8 @@ print(exec_result.stdout)
 
 This package is a public, self-contained guardrail utility. It does not include
 credentials, secrets, or any deployment-specific configuration.
+
+---
+**Zain Dana Harper** — small tools with explicit edges.
+[Portfolio](https://harperz9.github.io) · [HarperZ9](https://github.com/HarperZ9)
+<sub>Built with Claude Code; reviewed, tested, and owned by me.</sub>
