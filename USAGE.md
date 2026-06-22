@@ -103,12 +103,22 @@ token=[REDACTED:github_token]
 
 ### 2. Read a file, get redacted text + receipt (CLI)
 
-Given a file `sample.txt` containing:
+Create a file `sample.txt` with two secret-shaped lines. We build it by
+concatenation so this document never embeds a contiguous secret literal — the
+same convention used in the other examples above:
 
+```python
+from pathlib import Path
+
+# write_bytes (not write_text) so newlines stay LF on every platform — the
+# receipt below is for these exact 84 bytes.
+Path("sample.txt").write_bytes(
+    ("OPENAI_API_KEY=sk-" + "a" * 48 + "\n" + "password=hunter2\n").encode()
+)
 ```
-OPENAI_API_KEY=sk-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-password=hunter2
-```
+
+That is exactly 84 bytes — an OpenAI-shaped key and a `password=` field, the
+two redactions reported in the receipt below.
 
 Run:
 
