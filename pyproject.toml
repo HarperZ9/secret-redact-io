@@ -21,6 +21,11 @@ classifiers = [
   "Topic :: Software Development :: Quality Assurance",
 ]
 
+[project.urls]
+Homepage = "https://github.com/HarperZ9/secret-redact-io"
+Repository = "https://github.com/HarperZ9/secret-redact-io"
+Issues = "https://github.com/HarperZ9/secret-redact-io/issues"
+
 [project.scripts]
 secret-redact-io = "secret_redact_io.cli:main"
 
