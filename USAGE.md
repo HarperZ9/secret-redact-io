@@ -4,7 +4,7 @@
 execution. Each operation redacts secrets (API keys, tokens, PEM private keys,
 `password`/`api_key`-style fields) out of the returned text and produces a
 hash-only `GuardrailReceipt` that records byte counts, SHA-256 hashes, status
-metadata, and per-rule redaction counts — but never the raw secret values.
+metadata, and per-rule redaction counts -- but never the raw secret values.
 
 ## Install
 
@@ -104,20 +104,20 @@ token=[REDACTED:github_token]
 ### 2. Read a file, get redacted text + receipt (CLI)
 
 Create a file `sample.txt` with two secret-shaped lines. We build it by
-concatenation so this document never embeds a contiguous secret literal — the
+concatenation so this document never embeds a contiguous secret literal -- the
 same convention used in the other examples above:
 
 ```python
 from pathlib import Path
 
-# write_bytes (not write_text) so newlines stay LF on every platform — the
+# write_bytes (not write_text) so newlines stay LF on every platform -- the
 # receipt below is for these exact 84 bytes.
 Path("sample.txt").write_bytes(
     ("OPENAI_API_KEY=sk-" + "a" * 48 + "\n" + "password=hunter2\n").encode()
 )
 ```
 
-That is exactly 84 bytes — an OpenAI-shaped key and a `password=` field, the
+That is exactly 84 bytes -- an OpenAI-shaped key and a `password=` field, the
 two redactions reported in the receipt below.
 
 Run:

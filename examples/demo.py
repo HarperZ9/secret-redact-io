@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Best-effort demo — not runtime-verified by author.
+# Best-effort demo -- not runtime-verified by author.
 """End-to-end demo of secret-redact-io's public API.
 
 Exercises in-memory redaction, guarded read, guarded (dry-run) write, and
