@@ -1,10 +1,8 @@
-<p align="center"><img src=".github/assets/zentropy-banner.png" alt="secret-redact-io" width="100%"></p>
+<p align="center"><img src="docs/art/secret-redact-io-header.svg" alt="secret-redact-io: guarded io for tools. Read, write, fetch and run with the secrets stripped on the way out." width="100%"></p>
 
 # Secret Redact IO
 
-<p align="center">
-  <img src="docs/brand/secret-redact-io-hero.png" alt="Secret Redact IO, safe IO for agent tools with redaction and receipts">
-</p>
+Brand assets: `.github/assets/zentropy-banner.png` and `docs/brand/secret-redact-io-hero.png`.
 
 > Safe IO for agent tools: read, write, fetch, and exec with redaction and receipts.
 
@@ -40,6 +38,8 @@ The default posture is conservative:
 - receipts store byte counts, hashes, status metadata, and redaction counts;
 - receipts do not archive raw input or raw secret values.
 
+<p align="center"><img src="docs/art/guarded-lane.svg" alt="Eight stages from a guarded call to the caller, ending in redacted, untouched, or still leaking." width="100%"></p>
+
 ## Install
 
 ```bash
@@ -68,6 +68,12 @@ exec_result = run_guarded(["python", "-c", "print('hello')"])
 print(exec_result.stdout)
 ```
 
+## What a receipt records
+
+<p align="center"><img src="docs/art/receipt-fields.svg" alt="The nine keys a guardrail receipt returns, one to a row, each with what fills it. Two are digests, over the input bytes and over the returned text. Three are counts: the length of the input, the length of what came back, and how many times each rule fired. Two are names: which operation ran, and what it acted on, trimmed to a path or a program name. One is a clock stamp. The last is metadata, and its row is accented, because the caller fills it and nothing redacts what goes in." width="100%"></p>
+
+Nine keys, and seven of them are a hash, a count, or a name the tool trimmed itself. `target` keeps a path, a host and path, or a program name, and drops arguments and query strings before it is set. `metadata` is the exception: it holds what the caller handed over, and nothing redacts it.
+
 ## Usage
 
 See [USAGE.md](USAGE.md) for an install line, the full CLI and Python API
@@ -78,6 +84,10 @@ demo lives in [examples/demo.py](examples/demo.py).
 
 This package is a public, self-contained guardrail utility. It does not include
 credentials, secrets, or any deployment-specific configuration.
+
+<p align="center"><img src="docs/art/blind-spots-lane.svg" alt="Eight stages across the honesty surface, ending in hash only, unmatched, or open field." width="100%"></p>
+
+The policy is seven patterns and stays seven. Each one matches a shape, so a private key block, a key carrying a known prefix, or a value beside the word `password` is caught. A credential that reads as ordinary prose has no shape to match and survives the pass. That is the honest edge of the tool, and it is why the receipt reports which rules fired rather than claiming the text is clean.
 
 ---
 **Zain Dana Harper** -- small tools with explicit edges.
