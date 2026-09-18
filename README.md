@@ -42,8 +42,22 @@ The default posture is conservative:
 
 ## Install
 
+`secret-redact-io` is not currently published on PyPI. A bare
+`python -m pip install secret-redact-io` will fail until a package registry
+release exists.
+
+For a pinned release install, use the GitHub release tag:
+
 ```bash
-python -m pip install secret-redact-io
+python -m pip install "secret-redact-io @ git+https://github.com/HarperZ9/secret-redact-io.git@v0.1.0"
+```
+
+For local examples and tests, use a source checkout:
+
+```bash
+git clone https://github.com/HarperZ9/secret-redact-io
+cd secret-redact-io
+python -m pip install -e ".[dev]"
 ```
 
 ## CLI
@@ -99,8 +113,10 @@ The policy is seven patterns and stays seven. Each one matches a shape, so a pri
 Keep the public README, package metadata, and examples aligned with current behavior. Before opening a PR or pushing a release, run the local package verification path.
 
 ```bash
-python -m pip install -e ".[test]"
+python -m pip install -e ".[dev]"
 python -m pytest
+python scripts/check_public_surface.py
+python -m build
 ```
 
 See [AGENTS.md](AGENTS.md) for the repo-specific operating boundary and

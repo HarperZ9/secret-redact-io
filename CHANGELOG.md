@@ -2,6 +2,8 @@
 
 ## 2026-06-29 - Forward Delivery Contract
 
+- Documented GitHub tag and source-checkout install paths while PyPI has no
+  `secret-redact-io` project.
 - Added `project-docs/specs/SPEC-secret-redact-io-forward-delivery.md` as the
   implementation receipt for the delivery pass.
 - Updated GitHub Actions to current checkout/setup-python action majors.
