@@ -8,8 +8,21 @@ metadata, and per-rule redaction counts -- but never the raw secret values.
 
 ## Install
 
+`secret-redact-io` is not currently published on PyPI. Install from the GitHub
+release tag or from a local checkout.
+
+Pinned release tag:
+
 ```bash
-python -m pip install secret-redact-io
+python -m pip install "secret-redact-io @ git+https://github.com/HarperZ9/secret-redact-io.git@v0.1.0"
+```
+
+Local checkout for examples and tests:
+
+```bash
+git clone https://github.com/HarperZ9/secret-redact-io
+cd secret-redact-io
+python -m pip install -e ".[dev]"
 ```
 
 Requires Python 3.10+. No third-party dependencies (stdlib only).
@@ -221,3 +234,12 @@ producing a labelled placeholder:
 
 To customize, build your own `GuardrailPolicy([...])` and pass it via the
 `policy=` keyword to any of the guarded functions.
+
+## Troubleshooting
+
+- `No matching distribution found for secret-redact-io`: the package is not on
+  PyPI yet. Use the GitHub tag install or a local checkout.
+- `secret-redact-io: command not found`: use `python -m secret_redact_io --help`
+  or confirm that your virtual environment's scripts directory is on `PATH`.
+- `fetch` examples touch the network. For offline checks, use `read`, `write
+  --dry-run`, or `exec` with a local Python command.
