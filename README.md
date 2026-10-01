@@ -2,7 +2,7 @@
 
 # Secret Redact IO
 
-Brand assets: `.github/assets/zentropy-banner.png` and `docs/brand/secret-redact-io-hero.png`.
+Brand assets: `.github/assets/banner.png` and `docs/brand/secret-redact-io-hero.png`.
 
 > Safe IO for agent tools: read, write, fetch, and exec with redaction and receipts.
 
@@ -124,4 +124,4 @@ See [AGENTS.md](AGENTS.md) for the repo-specific operating boundary and
 
 ---
 
-**[Zentropy Labs](https://github.com/ZentropyLabs-ai)** · order out of entropy. An independent lab building evidence-first tools that leave a re-checkable artifact behind. Built by Zain Dana Harper in Seattle. The full workbench is at [Project Telos](https://harperz9.github.io).
+Built by **[Zain Dana Harper](https://harperz9.github.io)** in Seattle: evidence-first tools that leave a re-checkable artifact behind. The full workbench is at [Project Telos](https://harperz9.github.io).
