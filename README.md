@@ -1,10 +1,21 @@
-<p align="center"><img src="docs/art/secret-redact-io-header.svg" alt="secret-redact-io: guarded io for tools. Read, write, fetch and run with the secrets stripped on the way out." width="100%"></p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/HarperZ9/secret-redact-io/main/docs/art/hero-dark.svg">
+  <img src="https://raw.githubusercontent.com/HarperZ9/secret-redact-io/main/docs/art/hero-light.svg" alt="secret-redact-io: Guarded file, fetch and exec IO that strips secrets, hash-only receipts. Lines arrive from one side at a toothed ring around a bright core; most pass through and a few stop at the ring with a short cross mark." width="100%">
+</picture>
 
-# Secret Redact IO
+# secret-redact-io
 
-Brand assets: `.github/assets/banner.png` and `docs/brand/secret-redact-io-hero.png`.
+Guarded file, fetch and exec IO that strips secrets, hash-only receipts.
 
-> Safe IO for agent tools: read, write, fetch, and exec with redaction and receipts.
+```
+python -m pip install "secret-redact-io @ git+https://github.com/HarperZ9/secret-redact-io.git@v0.1.0"
+```
+
+[![version: 0.1.0](https://img.shields.io/badge/version-0.1.0-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/secret-redact-io/releases/latest)
+[![license](https://img.shields.io/badge/license-MIT-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/secret-redact-io/blob/main/LICENSE)
+![python 3.10+](https://img.shields.io/badge/python-3.10%2B-e6e1d6?style=flat-square&labelColor=1a1712)
+
+Brand assets: `docs/art/` (hero, social preview) and `docs/brand/` (mark, lockups).
 
 ## Why it matters
 
