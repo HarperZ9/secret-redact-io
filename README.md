@@ -23,6 +23,50 @@ The [animated explainer](https://harperz9.github.io/repo-explainers/secret-redac
 walks through the seven redaction rules, an in-memory redaction, guarded reads, dry-run writes and subprocess output, a receipt that holds no secret, and a credential in plain words that no rule can catch. Every value on it is output from this repository. Its
 source is [docs/explainer/index.html](docs/explainer/index.html).
 
+## Watch
+
+No concept film fits this tool closely yet. The walkthrough below covers it in text, with real commands and output.
+
+Video walkthrough: coming with the next release.
+
+## Walkthrough
+
+Install it, run it once, then use the main feature. Each command below is real, and so is its output.
+
+1. **Install.** Install the pinned release from GitHub. Python 3.10 or newer; it is not on PyPI.
+
+   ```text
+   $ python -m pip install "secret-redact-io @ git+https://github.com/HarperZ9/secret-redact-io.git@v0.1.0"
+   ```
+
+2. **First run: redact text.** In Python, redact a token and a password before the text goes anywhere.
+
+   ```text
+   >>> policy.redact_text("token=ghp_bbbb...b\npassword=hunter2")
+   token=[REDACTED:github_token] | password=[REDACTED:credential_field]
+   counts: {'github_token': 1, 'credential_field': 1}
+   total:  2
+   ```
+
+3. **Guard a write.** A guarded write in dry-run mode shows what it would write, redacted, and writes nothing.
+
+   ```text
+   >>> write_text_guarded(target, "api_key: ...", dry_run=True)
+   text:     api_key: [REDACTED:credential_field]
+   operation: write.dry_run
+   written:  False
+   file exists on disk: False
+   ```
+
+4. **Guard a command's output.** A guarded run redacts what the command prints.
+
+   ```text
+   >>> run_guarded(["python", "-c", "print('token=ghp_bbbb...b')"])
+   returncode: 0
+   stdout:     token=[REDACTED:github_token]
+   redactions: {'github_token': 1}
+   ```
+
 ## Why it matters
 
 Agents need IO, but raw IO can leak credentials or private payloads into logs and model context. Secret Redact IO gives tools a small guarded boundary: outputs are redacted, receipts are hash-only, and the original secret-shaped values are not archived.
