@@ -17,6 +17,12 @@ python -m pip install "secret-redact-io @ git+https://github.com/HarperZ9/secret
 
 Brand assets: `docs/art/` (hero, social preview) and `docs/brand/` (mark, lockups).
 
+## See it work, step by step
+
+The [animated explainer](https://harperz9.github.io/repo-explainers/secret-redact-io.html)
+walks through the seven redaction rules, an in-memory redaction, guarded reads, dry-run writes and subprocess output, a receipt that holds no secret, and a credential in plain words that no rule can catch. Every value on it is output from this repository. Its
+source is [docs/explainer/index.html](docs/explainer/index.html).
+
 ## Why it matters
 
 Agents need IO, but raw IO can leak credentials or private payloads into logs and model context. Secret Redact IO gives tools a small guarded boundary: outputs are redacted, receipts are hash-only, and the original secret-shaped values are not archived.
