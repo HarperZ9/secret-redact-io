@@ -177,7 +177,7 @@ ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
     <li><b>Redacted before it returns</b>File reads, writes, fetches and subprocess output all pass through the same seven rules.</li>
     <li><b>A dry run first</b>A guarded write can show its redacted text and receipt before anything reaches disk.</li>
     <li><b>Receipts without the secret</b>Input and output are recorded as SHA-256 digests and byte counts, with a count per rule that fired.</li>
-    <li><b>Stdlib only</b>A small Python SDK and CLI with no dependencies.</li>
+    <li><b>Stdlib only</b>A small Python SDK and CLI built on the standard library.</li>
   </ul>
   <p class="src">Source: <a href="https://github.com/HarperZ9/secret-redact-io/blob/e6503f0a0529d55bafa5e4a3f261a93ed0e9e43b/README.md">README.md</a> at e6503f0 (version 0.1.0)</p>
 </section>
@@ -219,13 +219,13 @@ ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
       </div></li>
       <li class="step" tabindex="-1" data-scene="k3" data-state="s"><div class="card">
         <span class="num">04</span><h3>A receipt with no secret in it</h3>
-        <p>The receipt for the subprocess call records the operation, the program name with its arguments dropped, the SHA-256 and length of the raw output and of the redacted output, and how many times each rule fired. The token itself appears nowhere.</p>
-        <p>One field, <code>metadata</code>, holds what the caller passed in, and nothing redacts it.</p>
+        <p>The receipt for the subprocess call records the operation, the program name with its arguments dropped, the SHA-256 and length of the raw output and of the redacted output, and how many times each rule fired. Search the receipt for the token and you find hashes and counts.</p>
+        <p>One field, <code>metadata</code>, holds what the caller passed in, exactly as passed.</p>
         <p class="src">Source: <a href="https://github.com/HarperZ9/secret-redact-io/blob/e6503f0a0529d55bafa5e4a3f261a93ed0e9e43b/src/secret_redact_io/receipts.py">src/secret_redact_io/receipts.py</a>; README.md, "What a receipt records"</p>
       </div></li>
       <li class="step" tabindex="-1" data-scene="k4" data-state="s"><div class="card">
         <span class="num">05</span><h3>What has no shape survives</h3>
-        <p>The rules match shapes. A secret written as ordinary prose has none, so it passes through untouched and no rule fires. That is why the receipt reports which rules fired; it never claims the text is clean. Pick each input in the panel.</p>
+        <p>The rules match shapes. A secret written as ordinary prose passes through untouched, and the receipt shows zero rules fired. The receipt reports which rules fired, which is a different statement from "this text is clean". Pick each input in the panel.</p>
         <p class="src">Source: README.md, "Boundary"</p>
       </div></li>
     </ol>
@@ -236,14 +236,14 @@ ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
   <h2 id="walkthrough">Walkthrough</h2>
   <p class="measure">Install it, run it once, then use the main feature. Each command below is real, and so is its output.</p>
   <ol class="walkthrough">
-    <li><h3>Install</h3><p>Install the pinned release from GitHub. Python 3.10 or newer; it is not on PyPI.</p>
+    <li><h3>Install</h3><p>Install the pinned release from GitHub. Python 3.10 or newer.</p>
 <pre class="cmd"><code>$ python -m pip install "secret-redact-io @ git+https://github.com/HarperZ9/secret-redact-io.git@v0.1.0"</code></pre></li>
     <li><h3>First run: redact text</h3><p>In Python, redact a token and a password before the text goes anywhere.</p>
 <pre class="cmd"><code>>>> policy.redact_text(&quot;token=ghp_bbbb...b\npassword=hunter2&quot;)
 <span class="out">token=[REDACTED:github_token] | password=[REDACTED:credential_field]
 counts: {&#x27;github_token&#x27;: 1, &#x27;credential_field&#x27;: 1}
 total:  2</span></code></pre></li>
-    <li><h3>Guard a write</h3><p>A guarded write in dry-run mode shows what it would write, redacted, and writes nothing.</p>
+    <li><h3>Guard a write</h3><p>A guarded write in dry-run mode shows what it would write, redacted, and leaves the disk as it was.</p>
 <pre class="cmd"><code>>>> write_text_guarded(target, &quot;api_key: ...&quot;, dry_run=True)
 <span class="out">text:     api_key: [REDACTED:credential_field]
 operation: write.dry_run
@@ -259,12 +259,12 @@ redactions: {&#x27;github_token&#x27;: 1}</span></code></pre></li>
 </section>
 
 <section class="block wrap" aria-labelledby="limits">
-  <h2 id="limits">What it does not do</h2>
+  <h2 id="limits">Limits</h2>
   <ul class="limits">
     <li>Seven patterns, matched by shape. A credential that reads as ordinary prose survives.</li>
-    <li>The caller-supplied <code>metadata</code> field is stored as given and is not redacted.</li>
+    <li>The caller-supplied <code>metadata</code> field is stored as given, so keep secrets out of it.</li>
     <li>A redacted write stores the redacted text, so the original value is gone from that file by design.</li>
-    <li>It is a guardrail for IO an agent performs. It does not scan a repository or rotate a leaked key.</li>
+    <li>It is a guardrail for IO an agent performs. Repository scanning and key rotation need their own tools.</li>
   </ul>
   <p class="src">Source: README.md at e6503f0, "What a receipt records" and "Boundary"</p>
 </section>
@@ -272,9 +272,9 @@ redactions: {&#x27;github_token&#x27;: 1}</span></code></pre></li>
 <section class="block wrap recall" aria-labelledby="recall">
   <h2 id="recall">Check what stuck</h2>
   <p class="measure">Answer each one in your head before you open it.</p>
-  <details><summary>What does a guarded dry-run write do on disk?</summary><p>Nothing. It returns the redacted text and a receipt, and the file is not created.</p></details>
-  <details><summary>Which receipt field can still hold sensitive text?</summary><p>metadata, because it holds what the caller passed in and nothing redacts it.</p></details>
-  <details><summary>Why does a combination written in words pass through?</summary><p>The rules match shapes, and plain prose has no shape to match.</p></details>
+  <details><summary>What does a guarded dry-run write do on disk?</summary><p>The disk is left as it was. The call returns the redacted text and a receipt.</p></details>
+  <details><summary>Which receipt field can still hold sensitive text?</summary><p>metadata, because it holds what the caller passed in, exactly as passed.</p></details>
+  <details><summary>Why does a combination written in words pass through?</summary><p>The rules match shapes, and plain prose carries its secret in words.</p></details>
 </section>
 </main>
 <footer class="foot wrap">
