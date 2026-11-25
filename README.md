@@ -1,3 +1,5 @@
+> **Archived (2026-11-25):** This repository has moved to [https://github.com/HarperZ9/flywheel/tree/main/packages/secret-redact-io](https://github.com/HarperZ9/flywheel/tree/main/packages/secret-redact-io). Active development and tests run there.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/HarperZ9/secret-redact-io/main/docs/art/hero-dark.svg">
   <img src="https://raw.githubusercontent.com/HarperZ9/secret-redact-io/main/docs/art/hero-light.svg" alt="secret-redact-io: Guarded file, fetch and exec IO that strips secrets, hash-only receipts. Lines arrive from one side at a toothed ring around a bright core; most pass through and a few stop at the ring with a short cross mark." width="100%">
